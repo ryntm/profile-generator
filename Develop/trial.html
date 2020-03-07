@@ -1,33 +1,4 @@
-const colors = {
-  green: {
-    wrapperBackground: "#E6E1C3",
-    headerBackground: "#C1C72C",
-    headerColor: "black",
-    photoBorderColor: "#black"
-  },
-  blue: {
-    wrapperBackground: "#5F64D3",
-    headerBackground: "#26175A",
-    headerColor: "white",
-    photoBorderColor: "#73448C"
-  },
-  pink: {
-    wrapperBackground: "#879CDF",
-    headerBackground: "#FF8374",
-    headerColor: "white",
-    photoBorderColor: "#FEE24C"
-  },
-  red: {
-    wrapperBackground: "#DE9967",
-    headerBackground: "#870603",
-    headerColor: "white",
-    photoBorderColor: "white"
-  }
-};
-
-function generateHTML(userColor, gitData, starred) {
-  return `
-  <html lang="en">
+<html lang="en">
      <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -133,10 +104,6 @@ function generateHTML(userColor, gitData, starred) {
             text-align: right;
             margin-top: 10px;
            }
-           .bio {
-            margin: 0 auto;
-            text-align: center;
-           }
            .container {
             padding: 50px;
             padding-left: 100px;
@@ -148,8 +115,6 @@ function generateHTML(userColor, gitData, starred) {
              justify-content: space-between;
              margin-top: 20px;
              margin-bottom: 20px;
-             text-align: center;
-
            }  
            .card {
              padding: 20px;
@@ -174,54 +139,44 @@ function generateHTML(userColor, gitData, starred) {
            }
         </style>
     </head>
-     <body>
-       <div class="wrapper">
-           <header class="photo-header">
-               <img src='${gitData.avatar_url}' alt="${gitData.login}">
-               <h1>Hi!</h1>
-               <h1>Ny name is ${gitData.name}</h1>
-               <h2>Currently @ ${gitData.company}</h2>
-               <a class="nav-link fas fa-location-arrow" href=''> ${gitData.location}</a>
-               <a class="nav-link fab fa-github-alt" href='${gitData.html_url}'> GitHub</a>
-               <a class="nav-link fas fa-rss-square" href='${gitData.blog}'> Blog</a>
-           </header>
-           
-           <main class="container">
-             <div class="row">
-               <h3 style="margin: 0 auto;text-align:center;">${gitData.bio}</h3>
-             </div>
-             <div class="row">
-               <div class="col">
-                 <div class="card">
-                   <h3>Repositories</h3>
-                   <h3>${gitData.public_repos}</h3>
-                 </div>
-               </div>
-               <div class="col">
-                 <div class="card">
-                   <h3>Github Stars</h3>
-                   <h3>${starred.length}</h3>
-                 </div>        
-               </div>
-             </div>
-             <div class="row">
-               <div class="col">
-                 <div class="card">
-                   <h3>Followers</h3>
-                   <h3>${gitData.followers}</h3>
-                 </div>
-               </div>
-               <div class="col">
-                 <div class="card">
-                   <h3>Following</h3>
-                   <h3>${gitData.following}</h3>
-                 </div>        
-               </div>
-             </div>        
-           </main>
-       </div>
- </body>
-</html>`}
-
-//needed so that it can be referenced in other files
-module.exports.generateHTML = generateHTML;
+    <body>
+    <div class="wrapper">
+        <header class="photo-header">
+            <img src="${userData.avatar_url}" alt="${userData.name}">
+            <h1>Hi!</h1>
+            <h2>My name is ${userData.name}!</h2>
+            <h4>Currently @ ${userData.company}</h4>
+          <div class="links-nav">
+            <a class="nav-link" href="https://www.google.com/maps/place/${userData.location}"><span class="fas fa-location-arrow"></span> ${userData.location}</a>
+            <a class="nav-link" href="${userData.html_url}"><span class="fab fa-github"></span> GitHub</a>
+            <a class="nav-link" href="${userData.blog}"><span class="fas fa-blog"></span> Blog</a>
+          </div>        
+        </header>
+        <main class="container">
+            <div class="row">
+                <h2>${userData.bio}</h2>
+            </div>
+            <div class="row">
+                <div class="col card">
+                    <h3>Repositories</h3>
+                    <h4>${userData.public_repos}</h4>
+                </div>
+                <div class="col card">
+                    <h3>GitHub Stars</h3>
+                    <h4>${starsData.length}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col card">
+                    <h3>Followers</h3>
+                    <h4>${userData.followers}</h4>
+                </div>
+                <div class="col card">
+                    <h3>Following</h3>
+                    <h4>${userData.following}</h4>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
