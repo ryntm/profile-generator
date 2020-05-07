@@ -74,7 +74,7 @@ function writeToFile(htmlGen, name) {
             throw err;
         }
         result.stream.pipe(fs.createWriteStream(`./PDFs/${name}.pdf`));
-        console.log('i think it worked')
+        console.log('Check the PDF folder for the generated profile!')
         conversion.kill();
     });
 }
